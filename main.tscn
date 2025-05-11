@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dckrs7gyxssi0"]
+[gd_scene load_steps=2 format=3 uid="uid://dckrs7gyxssi0"]
+
+[ext_resource type="Script" uid="uid://b1y4i3ggserip" path="res://main.gd" id="1_ig7tw"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ig7tw")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -16,14 +19,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Client" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 100
 text = "Client"
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="Server" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 100
 text = "Server"
+
+[connection signal="pressed" from="HBoxContainer/Client" to="." method="_on_client_pressed"]
+[connection signal="pressed" from="HBoxContainer/Server" to="." method="_on_server_pressed"]
