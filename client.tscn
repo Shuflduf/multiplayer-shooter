@@ -15,7 +15,7 @@ sky = SubResource("Sky_lgb4g")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Client" type="Node3D"]
+[node name="Connection" type="Node3D"]
 script = ExtResource("1_lgb4g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -26,3 +26,43 @@ shadow_enabled = true
 environment = SubResource("Environment_vsqxe")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="ClientUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ClientUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -161.0
+offset_right = 294.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ClientUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ClientUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+follow_focus = true
+
+[node name="Messages" type="VBoxContainer" parent="ClientUI/PanelContainer/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextBox" type="LineEdit" parent="ClientUI/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[connection signal="text_submitted" from="ClientUI/PanelContainer/MarginContainer/TextBox" to="." method="_on_text_box_text_submitted"]
